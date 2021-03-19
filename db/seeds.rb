@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+admin = Admin.find_or_create_by(first_name: 'admin', last_name: 'admin', email: 'admin@mail.lan')
+admin.password = 'admin'
+admin.save
+
+60.times do |i|
+  u = [Manager, Developer].sample.new
+  u.email = "email#{i}@mail.lan"
+  u.first_name = "FN#{i}"
+  u.last_name = "LN#{i}"
+  u.password = "#{i}"
+  u.save
+end

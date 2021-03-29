@@ -1,7 +1,9 @@
 FROM ruby:2.7.1-alpine
 
 ARG RAILS_ROOT=/app
-ARG PACKAGES="vim openssl-dev postgresql-dev build-base curl nodejs yarn less tzdata git postgresql-client bash screen"
+# Ensure you have either installed the shared-mime-info package for mimemagic
+ARG PACKAGES="vim openssl-dev postgresql-dev build-base curl nodejs yarn less tzdata git postgresql-client bash screen shared-mime-info"
+
 
 RUN apk update \
     && apk upgrade \

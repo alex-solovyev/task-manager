@@ -53,10 +53,12 @@ export default {
   },
 
   put(url, json) {
-    // …
+    const body = decamelize(json);
+
+    return axios.put(url, body).then(camelize);
   },
 
-  delete(url, json) {
-    // …
+  delete(url) {
+    return axios.delete(url).then(camelize);
   },
 };

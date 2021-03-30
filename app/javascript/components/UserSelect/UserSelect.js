@@ -9,6 +9,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 import UsersRepository from 'repositories/UsersRepository';
 
+import UserPresenter from 'presenters/UserPresenter';
+
 import useStyles from './useStyles';
 
 const UserSelect = ({ error, label, isClearable, isDisabled, isRequired, onChange, value, helperText }) => {
@@ -26,8 +28,8 @@ const UserSelect = ({ error, label, isClearable, isDisabled, isRequired, onChang
             cacheOptions
             loadOptions={handleLoadOptions}
             defaultOptions
-            getOptionLabel={(user) => `${user.firstName} ${user.lastName}`}
-            getOptionValue={(user) => user.id}
+            getOptionLabel={UserPresenter.fullName}
+            getOptionValue={UserPresenter.id}
             isDisabled={isDisabled}
             isClearable={isClearable}
             defaultValue={value}
@@ -51,7 +53,7 @@ UserSelect.propTypes = {
   isDisabled: PropTypes.bool,
   isRequired: PropTypes.bool,
   onChange: PropTypes.func,
-  value: PropTypes.shape(),
+  value: UserPresenter.shape(),
   helperText: PropTypes.string,
 };
 

@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 import KanbanBoard from '@lourenci/react-kanban';
 import { propOr } from 'ramda';
 
-import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 
-import Task from 'components/Task';
-import TasksRepository from 'repositories/TasksRepository';
-import ColumnHeader from 'components/ColumnHeader';
 import AddPopup from 'components/AddPopup';
+import ColumnHeader from 'components/ColumnHeader';
 import EditPopup from 'components/EditPopup';
+import Task from 'components/Task';
+
 import TaskForm from 'forms/TaskForm';
 import TaskPresenter from 'presenters/TaskPresenter';
+
+import TasksRepository from 'repositories/TasksRepository';
 
 import useStyles from './useStyles';
 

@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Modal from '@material-ui/core/Modal';
 
 import Form from 'components/Form';
+import TaskPresenter from 'presenters/TaskPresenter';
 
 import useStyles from './useStyles';
 
@@ -34,6 +35,7 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate })
       setErrors(error || {});
 
       if (error instanceof Error) {
+        // eslint-disable-next-line no-alert
         alert(`Update Failed! Error: ${error.message}`);
       }
     });
@@ -45,9 +47,11 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate })
     onCardDestroy(task).catch((error) => {
       setSaving(false);
 
+      // eslint-disable-next-line no-alert
       alert(`Destrucion Failed! Error: ${error.message}`);
     });
   };
+
   const isLoading = isNil(task);
 
   return (
@@ -59,7 +63,7 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate })
               <CloseIcon />
             </IconButton>
           }
-          title={isLoading ? 'Your task is loading. Please be patient.' : `Task # ${task.id} [${task.name}]`}
+          title={isLoading ? 'Your task is loading. Please be patient.' : TaskPresenter.title(task)}
         />
         <CardContent>
           {isLoading ? (
@@ -71,7 +75,13 @@ const EditPopup = ({ cardId, onClose, onCardDestroy, onLoadCard, onCardUpdate })
           )}
         </CardContent>
         <CardActions className={styles.actions}>
-          <Button disabled={isLoading || isSaving} onClick={handleCardUpdate} size="small" variant="contained" color="primary">
+          <Button
+            disabled={isLoading || isSaving}
+            onClick={handleCardUpdate}
+            size="small"
+            variant="contained"
+            color="primary"
+          >
             Update
           </Button>
           <Button

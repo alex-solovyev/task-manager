@@ -15,6 +15,8 @@ import TaskPresenter from 'presenters/TaskPresenter';
 
 import TasksRepository from 'repositories/TasksRepository';
 
+import TasksRepository from 'repositories/TasksRepository';
+
 import useStyles from './useStyles';
 
 const MODES = {

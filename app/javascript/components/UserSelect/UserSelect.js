@@ -62,7 +62,7 @@ UserSelect.defaultProps = {
   isDisabled: false,
   isRequired: false,
   value: null,
-  helperText: undefined
+  helperText: undefined,
 };
 
 export default UserSelect;

@@ -1,3 +1,14 @@
+require 'simplecov'
+require 'coveralls'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+                                                                 SimpleCov::Formatter::HTMLFormatter,
+                                                                 Coveralls::SimpleCov::Formatter,
+                                                               ])
+if ENV['COVERAGE']
+  SimpleCov.start('rails')
+end
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'

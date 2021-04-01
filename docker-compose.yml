@@ -23,6 +23,7 @@ services:
       GEM_PATH: /bundle_cache
       RAILS_PORT: 3000
       RUBYOPT: -W:no-deprecated -W:no-experimental
+      ROLLBAR_ACCESS_TOKEN: ${ROLLBAR_ACCESS_TOKEN}
     command: bundle exec rails s -b '0.0.0.0' -p 3000
 
   db:
@@ -33,5 +34,18 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
 
+  ci:
+    build: .
+    depends_on:
+      - db
+    environment:
+      - CI
+      - COVERAGE
+      - COVERALLS_REPO_TOKEN
+      - RAILS_ENV
+      - DATABASE_HOST=db
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+    command: sh -c "bundle exec rails webpacker:install; bundle exec rails db:create db:migrate; bundle exec rake test"
 volumes:
   bundle_cache:
